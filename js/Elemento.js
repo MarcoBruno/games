@@ -1,4 +1,4 @@
-function Elemento(x, y, tamnho) {
+var Elemento = (function (x, y, tamnho) {
 	var x = x;
 	var y = y;
 	var tamanho = tamanho;
@@ -21,8 +21,8 @@ function Elemento(x, y, tamnho) {
 			this.y = $canvas.height-30;
 		}
 	};
-	
 
-	
-	
-};
+	return {
+		desenha: desenha
+	}
+});
