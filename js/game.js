@@ -5,17 +5,7 @@
 
 	function gameLoop() {
 		context.beginPath();
-
 		context.clearRect(0, 0, $canvas.width, $canvas.height);
-
-		context.rect(10, cont, 30, 30);
-		if (cont < $canvas.height-30) {
-			cont+=5;
-		} else {
-			cont = $canvas.height-30;
-		}
-		context.fillStyle = "#000";
-		context.fill();
 
 		win.requestAnimationFrame(gameLoop);
 	};
