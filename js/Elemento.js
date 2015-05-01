@@ -1,16 +1,15 @@
-function Elemento(x, y, tamanho , coluna , indice) {
-	var x = x;
-	var y = y;
+function Elemento(posicao,tamanho) {
+	var posicao = posicao;
 	var tamanho = tamanho;
-	var coluna = coluna;
-	var indice = indice;
 
 	var calculaGravidade = function ($canvas,forcaDaGravidade,colunas) {
 		
-		if(y < $canvas.height - (tamanho * colunas[coluna]) - 1) {
-			y += forcaDaGravidade;
+		if(posicao.getY() < $canvas.height - (tamanho * colunas[posicao.getColuna()]) - 1) {
+			var atual = posicao.getY();
+			posicao.setY(atual + forcaDaGravidade);
 		}else {
-			y = $canvas.height - tamanho * indice - 1;
+			var novoY = $canvas.height - tamanho * posicao.getIndice() - 1; 
+			posicao.setY(novoY);
 		};
 
 	};
@@ -20,7 +19,7 @@ function Elemento(x, y, tamanho , coluna , indice) {
 		calculaGravidade($canvas,forcaDaGravidade,colunas);
 		var context = $canvas.getContext('2d');
 		
-		context.rect(x, y, tamanho, tamanho);	
+		context.rect(posicao.getX(), posicao.getY(), tamanho, tamanho);	
 		context.fillStyle = "#000";
 
 		context.fill();

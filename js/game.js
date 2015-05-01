@@ -4,6 +4,13 @@
 	var gravidade = 10;
 	var elementos = [];
 	var colunas = [0,0,0,0,0];
+	var teclas = [];
+	teclas[49] = 0; //Tecla 1
+	teclas[50] = 1; //Tecla 2
+	teclas[51] = 2; //Tecla 3
+	teclas[52] = 3; //Tecla 4
+	teclas[53] = 4; //Tecla 5
+
 
 	function gameLoop() {
 		context.beginPath();
@@ -19,19 +26,21 @@
 	win.requestAnimationFrame(gameLoop);
 
 	window.addEventListener("keyup",function (ev) {
-		var tamanho = 40; 
-		var teclas = [];
-		teclas[49] = 0; //Tecla 1
-		teclas[50] = 1; //Tecla 2
-		teclas[51] = 2; //Tecla 3
-		teclas[52] = 3; //Tecla 4
-		teclas[53] = 4; //Tecla 5
-		colunas[teclas[ev.keyCode]]++;
 
-		var novoElemento = new Elemento(teclas[ev.keyCode] * tamanho, (tamanho +20) * -1, tamanho , teclas[ev.keyCode],colunas[teclas[ev.keyCode]]);
-		console.log(teclas[ev.keyCode]);
+		var tamanhoBase = 40; 
+
+		var novoX = teclas[ev.keyCode] * tamanhoBase;
+		var novoY = (tamanhoBase + 20) * -1;
+		var coluna = teclas[ev.keyCode];
+		var indice = ++colunas[teclas[ev.keyCode]];
+
+		var posicao = new Posicao(novoX,novoY,coluna,indice);
+		
+
+		var novoElemento = new Elemento(posicao,tamanhoBase);
 
 		elementos.push(novoElemento);
+
 	});
 
 })(document, window);
