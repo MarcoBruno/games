@@ -1,5 +1,5 @@
 var Elemento = (function (x, y, tamanho) {
-	var x = x;
+	var x = x - tamanho / 2;
 	var y = y;
 	var tamanho = tamanho;
 
@@ -22,13 +22,7 @@ var Elemento = (function (x, y, tamanho) {
 		context.fill();
 	};
 
-	var setX = function (novoX) {
-		x = novoX - tamanho / 2;
-		y = -tamanho - 20;
-	}
-
 	return {
-		desenha: desenha,
-		setX: setX
+		desenha: desenha
 	}
 });
