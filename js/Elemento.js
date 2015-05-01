@@ -1,6 +1,7 @@
-function Elemento(posicao,tamanho) {
+function Elemento(posicao,tamanho,cor) {
 	var posicao = posicao;
 	var tamanho = tamanho;
+	var cor = cor;
 
 	var calculaGravidade = function ($canvas,forcaDaGravidade,colunas) {
 		
@@ -19,9 +20,12 @@ function Elemento(posicao,tamanho) {
 		calculaGravidade($canvas,forcaDaGravidade,colunas);
 		var context = $canvas.getContext('2d');
 		
+		context.beginPath();
+
 		context.rect(posicao.getX(), posicao.getY(), tamanho, tamanho);	
-		context.fillStyle = "#000";
+		context.fillStyle = cor;
 
 		context.fill();
+
 	};
 };

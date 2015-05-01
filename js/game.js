@@ -4,6 +4,7 @@
 	var gravidade = 10;
 	var elementos = [];
 	var colunas = [0,0,0,0,0];
+	var cores = ['#000','#f00', '#00f'];
 	var teclas = [];
 	teclas[49] = 0; //Tecla 1
 	teclas[50] = 1; //Tecla 2
@@ -13,7 +14,7 @@
 
 
 	function gameLoop() {
-		context.beginPath();
+
 		context.clearRect(0, 0, $canvas.width, $canvas.height);
 
 		elementos.forEach(function (el) {
@@ -26,6 +27,8 @@
 	win.requestAnimationFrame(gameLoop);
 
 	window.addEventListener("keyup",function (ev) {
+		var corAleatoria = parseInt(Math.random() * 3) 
+		var novaCor = cores[corAleatoria];
 
 		var tamanhoBase = 40; 
 
@@ -37,7 +40,7 @@
 		var posicao = new Posicao(novoX,novoY,coluna,indice);
 		
 
-		var novoElemento = new Elemento(posicao,tamanhoBase);
+		var novoElemento = new Elemento(posicao,tamanhoBase, novaCor);
 
 		elementos.push(novoElemento);
 
