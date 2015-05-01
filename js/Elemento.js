@@ -1,26 +1,28 @@
-var Elemento = (function (x, y, tamnho) {
+var Elemento = (function (x, y, tamanho) {
 	var x = x;
 	var y = y;
 	var tamanho = tamanho;
 
+	var calculaGravidade = function ($canvas,forcaDaGravidade) {
+		if (y < $canvas.height-tamanho) {
+			y+=5;
+		} else {
+			y = $canvas.height-tamanho;
+		}
+	};
+
 	var desenha = function ($canvas,forcaDaGravidade) {
 
-		this.calculaGravidade($canvas,forcaDaGravidade);
-		var context = $canvas.getContent('2d');
-
+		calculaGravidade($canvas,forcaDaGravidade);
+		var context = $canvas.getContext('2d');
+		
 		context.rect(x, y, tamanho, tamanho);	
 		context.fillStyle = "#000";
 
 		context.fill();
 	};
 
-	var calculaGravidade = function ($canvas,forcaDaGravidade) {
-		if (this.y < $canvas.height-30) {
-			this.y+=5;
-		} else {
-			this.y = $canvas.height-30;
-		}
-	};
+	
 
 	return {
 		desenha: desenha
