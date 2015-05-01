@@ -7,11 +7,16 @@
 	function gameLoop() {
 		context.beginPath();
 		context.clearRect(0, 0, $canvas.width, $canvas.height);
-		
+
 		quadrado.desenha($canvas,gravidade);
 
 		win.requestAnimationFrame(gameLoop);
 	};
 
 	win.requestAnimationFrame(gameLoop);
+
+	$canvas.addEventListener("click",function (ev) {
+		quadrado.setX(ev.pageX);
+	});
+	
 })(document, window);

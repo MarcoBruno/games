@@ -22,9 +22,13 @@ var Elemento = (function (x, y, tamanho) {
 		context.fill();
 	};
 
-	
+	var setX = function (novoX) {
+		x = novoX - tamanho / 2;
+		y = -tamanho - 20;
+	}
 
 	return {
-		desenha: desenha
+		desenha: desenha,
+		setX: setX
 	}
 });
