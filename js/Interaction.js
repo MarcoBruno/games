@@ -8,6 +8,7 @@ var Interaction = (function(listen) {
 
 	module._init = function() {
 
+
 		module.listen.addEventListener('keydown', function(event) {
 			var key = module.keyboard.getKey(event.keyCode);
 
@@ -35,8 +36,6 @@ var Interaction = (function(listen) {
 	module.start = function() {
 		module._init();
 	};
-
-
 
 	return {
 		start : module.start,

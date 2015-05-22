@@ -38,7 +38,7 @@ var GameLoop = (function(context) {
 		return sprites[lastPosition];
 	};
 
-	module.newSprite = function(sprite) {
+	module.addSprite = function(sprite) {
 		module.sprites.push(sprite);
 	};
 
@@ -74,9 +74,8 @@ var GameLoop = (function(context) {
 	};
 
 	return {
-		newSprite : module.newSprite,
+		addSprite : module.addSprite,
 		start : module.start,
-		stop : module.stop,
-		move : module.move	
+		stop : module.stop
 	};
 });

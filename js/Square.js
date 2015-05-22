@@ -1,8 +1,8 @@
-var Square = (function(positionX, positionY, width, height, velocityX, velocityY, context) {
+var Square = (function(positionX, positionY, width, height, velocityX, velocityY, world) {
 	'use strict';
 
 	var module = {
-		context : context,
+		world : world,
 		positionX : positionX,
 		positionY : positionY,
 		width : width,
@@ -15,28 +15,31 @@ var Square = (function(positionX, positionY, width, height, velocityX, velocityY
 	};
 
 	module._collisionY = function() {
-		return module.positionY + module.height < module.context.canvas.height - (module.height * COLLUMN[module.collumn]);
+		return module.positionY + module.height < module.world.getContext().canvas.height - (module.height * module.world.getCollumn(module.collumn));
 	};
 
 	module._collissionLeft = function() {
 		return module.positionX != 0;
-	}
+	};
 
 	module._collissionRight = function() {
 		return module.positionX < (module.width * 5) - module.width;
-	}
+	};
 
 	module.draw = function() {
-		module.context.fillRect(module.positionX, module.positionY, module.width, module.height);	
+		module.world.getContext().fillRect(module.positionX, module.positionY, module.width, module.height);	
 	};
 
 	module.update = function(deltaTime) {
 		if (module._collisionY()) {
+			module.velocityY += module.world.getGravity();
 			module.positionY += module.velocityY * deltaTime;
 		} else if (!module.colission) {	
-			COLLUMN[module.collumn]++;
-			module.positionY = module.context.canvas.height - (module.height * COLLUMN[module.collumn]);
+			world.updateCollumn(module.collumn);
+			module.positionY = module.world.getContext().canvas.height - (module.height * module.world.getCollumn(module.collumn));
 			module.colission = true;
+			// criar um novo quadrado
+			module.world.newSquare();
 		};
 	};
 
