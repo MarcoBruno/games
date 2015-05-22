@@ -35,6 +35,7 @@ var Square = (function(positionX, positionY, width, height, velocityX, velocityY
 			module.positionY += module.velocityY * deltaTime;
 		} else if (!module.colission) {
 			COLLUMN[module.collumn]++;
+			module.positionY = module.context.canvas.height - (module.height * COLLUMN[module.collumn]);
 			module.colission = true;
 		};
 	};
