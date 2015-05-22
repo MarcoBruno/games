@@ -5,9 +5,7 @@ COLLUMN[2] = 0;
 COLLUMN[3] = 0;
 COLLUMN[4] = 0;
 
-// var WORLD = new World();
-
-(function (document) {
+(function(document) {
 	'use strict';
 
 	var $canvas = document.getElementById('canvas');

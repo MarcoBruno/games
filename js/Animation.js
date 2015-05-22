@@ -10,6 +10,7 @@ var Animation = (function(context) {
 
 	module._requestAnimationFrame = function() {
 		if (module.on) {
+
 			var dateTimeNow = Date.now();
 			var deltaTime = dateTimeNow - module.dateTime;
 			module.dateTime = dateTimeNow;
@@ -41,16 +42,6 @@ var Animation = (function(context) {
 		module.sprites.push(sprite);
 	};
 
-	module.move = function(right) {
-		var lastSprite = module._lastSprite();
-
-		if (right) {
-			lastSprite.moveRight();
-		} else {
-			lastSprite.moveLeft()
-		};
-	};
-
 	module.start = function() {
 		var interaction = new Interaction(document);
 
@@ -70,7 +61,7 @@ var Animation = (function(context) {
 			var lastSprite = module._lastSprite();
 
 			lastSprite.moveDown();
-		})
+		});
 
 		interaction.start();
 
