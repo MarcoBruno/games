@@ -11,12 +11,8 @@ COLLUMN[4] = 0;
 	var $canvas = document.getElementById('canvas');
 	var context = $canvas.getContext('2d');
 
-	var animation = new Animation(context);
+	var world = new World(context);
 	
-	document.addEventListener('click', function(event) {
-		var square = new Square(100, 0, 50, 50, 50, 0.2, context);
-		animation.newSprite(square);
-	});
-
-	animation.start();
+	world.start();
+	
 })(document);

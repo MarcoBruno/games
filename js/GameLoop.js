@@ -1,4 +1,4 @@
-var Animation = (function(context) {
+var GameLoop = (function(context) {
 	'use strict';
 
 	var module = {
