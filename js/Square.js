@@ -28,6 +28,10 @@ var Square = (function(id,positionX, positionY, width, height, velocityX, veloci
 		return module.positionX < (module.width * 5) - module.width;
 	};
 
+	module.setColor = function (color) {
+		module.color = color;
+	}
+
 	module.draw = function() {
 		var context = module.world.getContext();
 		context.beginPath();
@@ -74,6 +78,7 @@ var Square = (function(id,positionX, positionY, width, height, velocityX, veloci
 		moveLeft : module.moveLeft,
 		moveRight : module.moveRight,
 		moveDown : module.moveDown,
-		id : module.id
+		id : module.id,
+		setColor : module.setColor
 	};
 });

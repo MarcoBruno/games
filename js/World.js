@@ -11,17 +11,21 @@ var WORLD = (function() {
 	var points = 0;
 	var pointCounter;
 	var instance = this;
-
-	
+	var nextSquare = parseInt(Math.random() * colors.length);
+	var nextSquareSprite;
 
 	var _gameOver = function(square) {
 		return collumns[square.collumn].length > 8;
 	};
 
+
 	this.newSquare = function () {
-		var random = parseInt(Math.random() * colors.length);
-		var square = new Square(idSquare++,100, 0, 50, 50, 50, 0, colors[random], this);
+		var square = new Square(idSquare++,100, 0, 50, 50, 50, 0, colors[nextSquare], this);
 		gameLoop.addSprite(square);
+
+		// calcula o proximo quadrado
+		nextSquare = parseInt(Math.random() * colors.length);
+		nextSquareSprite.setColor(colors[nextSquare]);
 	}
 
 	this.getContext = function () {
@@ -39,6 +43,9 @@ var WORLD = (function() {
 
 		pointCounter = new Text(points,"black",280, 400, instance, true);
 		gameLoop.addSprite(pointCounter);
+
+		nextSquareSprite = new StaticSquare(idSquare++,260, 100, 30, 30, colors[nextSquare], instance);
+		gameLoop.addSprite(nextSquareSprite);
 
 	};
 
