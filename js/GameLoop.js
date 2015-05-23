@@ -18,8 +18,12 @@ var GameLoop = (function(context) {
 			module._clearScreen();
 
 			module.sprites.forEach(function(sprite) {
-				sprite.update(deltaTime);
-				sprite.draw();
+
+				if(sprite != null) {
+					sprite.update(deltaTime);
+					sprite.draw();
+				}
+
 			});
 
 			requestAnimationFrame(module._requestAnimationFrame);
@@ -40,6 +44,18 @@ var GameLoop = (function(context) {
 
 	module.addSprite = function(sprite) {
 		module.sprites.push(sprite);
+	};
+
+	module.removeSprite = function (sprite) {
+
+		for(var i = 0; i < module.sprites.length ; i++) {
+			var el = module.sprites[i];
+			if(!(el == null) && el.id == sprite.id) {
+				module.sprites[i] = null;
+				
+			}
+		}
+
 	};
 
 	module.start = function() {
@@ -76,6 +92,7 @@ var GameLoop = (function(context) {
 	return {
 		addSprite : module.addSprite,
 		start : module.start,
-		stop : module.stop
+		stop : module.stop,
+		removeSprite : module.removeSprite
 	};
 });

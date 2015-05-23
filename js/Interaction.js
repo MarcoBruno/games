@@ -10,6 +10,7 @@ var Interaction = (function(listen) {
 
 
 		module.listen.addEventListener('keydown', function(event) {
+
 			var key = module.keyboard.getKey(event.keyCode);
 
 			if (key) {
