@@ -1,8 +1,9 @@
-var GameLoop = (function(context) {
+var GameLoop = (function(world) {
 	'use strict';
 
 	var module = {
-		context : context,
+		world : world,
+		context : world.getContext(),
 		sprites : [],
 		on : false,
 		dateTime : Date.now()
@@ -18,12 +19,8 @@ var GameLoop = (function(context) {
 			module._clearScreen();
 
 			module.sprites.forEach(function(sprite) {
-
-				if(sprite != null) {
-					sprite.update(deltaTime);
-					sprite.draw();
-				}
-
+				sprite.update(deltaTime);
+				sprite.draw();
 			});
 
 			requestAnimationFrame(module._requestAnimationFrame);
@@ -47,14 +44,12 @@ var GameLoop = (function(context) {
 	};
 
 	module.removeSprite = function (sprite) {
-
 		for(var i = 0; i < module.sprites.length ; i++) {
 			var el = module.sprites[i];
-			if(!(el == null) && el.id == sprite.id) {
-				module.sprites[i] = null;
-				
-			}
-		}
+			if (el.id == sprite.id) {
+				module.sprites.splice(i, 1);		
+			};
+		};
 
 	};
 
@@ -85,14 +80,20 @@ var GameLoop = (function(context) {
 		module._requestAnimationFrame();
 	};
 
-	module.stop = function() {
+	module._stop = function() {
 		module.on = false;
+	};
+
+	module.gameOver = function() {
+		var textGameOver = new Text('Se fodeu!', 'red', 100, 100, world);
+		textGameOver.draw();
+		module._stop();
 	};
 
 	return {
 		addSprite : module.addSprite,
 		start : module.start,
-		stop : module.stop,
+		gameOver : module.gameOver,
 		removeSprite : module.removeSprite
 	};
 });
